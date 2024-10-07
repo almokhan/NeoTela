@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEO</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+
+        table {
+            width: 400px;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid black;
+            padding: 3px;
+            text-align: center;
+           
+    
+        }
+        th {
+            border: 1px solid black;
+            padding: 3px;
+            text-align: center;
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th colspan="3"> Periodo: </td>
+
+        </tr>
+        <tr>
+            <td colspan="3"; bgcolor="gray">Produto: </td  >
+
+        </tr>
+        <tr>
+            <td bgcolor="yellow">Planejada</td>
+            <td bgcolor="red"><span id="valor16"></span></td>
+            <td bgcolor="gray"><span id="valor17"></span></td>
+
+        </tr>
+        <tr>
+            <td bgcolor="yellow">Expectativa</td>
+            <td bgcolor="red"><span id="valor18"></span></td>
+            <td bgcolor="gray"><span id="valor19"></span></td>
+
+        </tr>
+        <tr>
+            <td bgcolor="yellow">Produzidas</td>
+            <td bgcolor="red"><span id="valor20"></span></td>
+            <td bgcolor="gray"><span id="valor21"></span></td>
+        </tr>
+        <tr>
+            <td bgcolor="yellow">Reprovadas</td>
+            <td bgcolor="red"><span id="valor22"></span></td>
+            <td bgcolor="gray"><span id="valor23"></span></td>
+        </tr>
+        <tr>
+            <td  bgcolor="gray"> </td>
+            <td bgcolor="gray"> Por Hora</td>
+            <td bgcolor="gray"> Por Turno</td>
+        </tr>
+
+    </table>
+    <p></p>
+    <p></p>
+    <table>
+        <tr>
+            <th colspan=2> Linha:</th>
+        </tr>
+        <tr>
+            <td colspan="2">Hora X Hora</td>
+        </tr>
+        <tr>
+            <td colspan="2">Hora Produção</td>
+        </tr>
+        <tr>
+            <td>6:00 <span id="valor6"></span></td>
+        </tr>
+        <tr>
+            <td>7:00 <span id="valor7"></span></td>
+        </tr>
+        <tr>
+            <td>8:00 <span id="valor8"></span></td>
+        </tr>
+        <tr>
+            <td>9:00 <span id="valor9"></span></td>
+        </tr>
+        <tr>
+            <td>10:00 <span id="valor10"></span></td>
+        </tr>
+        <tr>
+            <td>11:00 <span id="valor11"></span></td>
+        </tr>
+        <tr>
+            <td>12:00 <span id="valor12"></span></td>
+        </tr>
+        <tr>
+            <td>13:00 <span id="valor13"></span></td>
+        </tr>
+        <tr>
+            <td>14:00 <span id="valor14"></span></td>
+        </tr>
+        <tr>
+            <td>15:00 <span id="valor15"></span></td>
+        </tr>
+    </table>
+
+    <script>
+      
+        const valores = {
+            6: 100,
+            7: 150,
+            8: 200,
+            9: 180,
+            10: 220,
+            11: 190,
+            12: 210,
+            13: 230,
+            14: 200,
+            15: 180,
+            16: 10,
+            17: 11,
+            18: 12,
+            19: 13,
+            20: 14,
+            21: 15,
+            22: 16,
+            23: 17
+        };
+
+     
+        function atualizarValores() {
+            for (let hora = 6; hora <= 23; hora++) {
+                const elemento = document.getElementById(`valor${hora}`);
+                if (elemento) {
+                    elemento.textContent = valores[hora];
+                }
+            }
+        }
+
+        // Chama a função para atualizar os valores quando a página carrega
+        window.onload = atualizarValores;
+    </script>
+</body>
+
+</html>
