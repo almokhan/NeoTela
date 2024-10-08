@@ -19,7 +19,7 @@ app.use('/', indexRouter);
 
 // Ouve a porta para o browser
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`Servidor rodando http://127.0.0.1:${PORT}`);
 });
 
 //comit
