@@ -15,32 +15,34 @@
         }
         .dashboard {
             display: flex;
-            gap: 0; /* Remove espaço entre as tabelas */
+            gap: 0;
             flex-wrap: wrap;
         }
-        .table-container {
-            background-color: #504f4f);
+          .table-container {
+            background-color: #504f4f;
             flex: 1;
             min-width: 300px;
-            border: 3px solid black; /* Borda preta de 3 pixels */
+            border: 3px solid black;
+            overflow: hidden; /* Adicionado para evitar vazamento de bordas */
         }
-        table {
+          table {
             width: 100%;
             border-collapse: collapse;
-            border-spacing: 0; /* Remove espaço entre as células */
+            border-spacing: 0;
         }
         th, td {
             background-color: #504f4f;
             padding: 21px;
             text-align: left;
             color: Black;
+            border: none; /* Removido as bordas individuais das células */
         }
         th {
             background-color: #494949; 
             color: yellow;
         }
         .yellow-bg { background-color: #504f4f; color: rgb(250, 234, 9); }
-        .red-bg { background-color: #c50619; color: black; }
+        .red-bg { background-color: #c50619; color: black;}
         .gray-bg { background-color: #504f4f; color: black; }
         .gray-apr { background-color: #504f4f; color: yellow; }
         .input-container {
@@ -73,15 +75,18 @@
             margin-top: 0;
             color: #4CAF50;
         }
-
-        /* Estilo específico para a tabela da direita */
-        .table-container:nth-child(2) td {
-            padding: 6px; /* Diminui o padding para as células da tabela da direita */
+       .table-container:nth-child(2) td {
+            padding: 6px;
+        }
+        .destaque-cell {
+            border: 1px solid yellow;
+            color: yellow;
+             font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h2>Produção</h2>
+    <h2><span id="valor24"></span></h2>
     <div class="input-container">
         <div class="input-group">
             <label for="periodo">Período:</label>
@@ -123,14 +128,13 @@
     </div>
 
     <div class="dashboard">
-        <!-- Tabela de Produção agora está em primeiro lugar -->
         <div class="table-container">
             <table>
                 <tr>
                     <th colspan="3">Periodo: <span id="periodoSpan"></span></th>
                 </tr>
                 <tr>
-                    <td colspan="3" class="gray-apr">Produto: <span id="produtoSpan"></span></td>
+                    <td colspan="3" class="destaque-cell">Produto: <span id="produtoSpan"></span></td>
                 </tr>
                 <tr>
                     <td class="yellow-bg">Planejada</td>
@@ -160,17 +164,16 @@
             </table>
         </div>
 
-        <!-- Tabela de Hora X Hora agora está em segundo lugar -->
         <div class="table-container">
             <table>
                 <tr>
                     <th colspan="2">Linha: <span id="linhaSpan"></span></th>
                 </tr>
                 <tr>
-                    <td colspan="2">Hora X Hora</td>
+                    <td colspan="2" class="destaque-cell">Hora X Hora</td>
                 </tr>
                 <tr>
-                    <td colspan="2">Hora Produção</td>
+                    <td colspan="2" class="destaque-cell">Hora Produção</td>
                 </tr>
                 <tr><td>6:00</td><td><span id="valor6"></span></td></tr>
                 <tr><td>7:00</td><td><span id="valor7"></span></td></tr>
@@ -194,7 +197,7 @@
             6: 100, 7: 150, 8: 200, 9: 180, 10: 220,
             11: 190, 12: 210, 13: 230, 14: 200, 15: 180,
             16: 10, 17: 11, 18: 12, 19: 13, 20: 14,
-            21: 15, 22: 16, 23: 17
+            21: 15, 22: 16, 23: 17, 24:"Produção"
         };
 
         function atualizarVariavel() {
@@ -206,14 +209,14 @@
             if (!isNaN(newValue)) {
                 valores[selectedVariable] = newValue;
                 atualizarValores();
-                variableValue.value = ''; // Limpa o campo de entrada
+
             } else {
                 alert('Por favor, insira um valor numérico válido.');
             }
         }
 
         function atualizarValores() {
-            for (let i = 6; i <= 23; i++) {
+            for (let i = 6; i <= 24; i++) {
                 const span = document.getElementById(`valor${i}`);
                 if (span) {
                     span.textContent = valores[i];
