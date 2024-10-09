@@ -11,6 +11,9 @@ app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 
+// Configuração para servir arquivos estáticos
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Rotas
 const indexRouter = require('./routes/index'); // Rota para o arquivo index
 
@@ -21,8 +24,6 @@ app.use('/', indexRouter);
 app.listen(PORT, () => {
   console.log(`Servidor rodando http://127.0.0.1:${PORT}`);
 });
-
-//comit
 
 // Exporta o obj app
 module.exports = app;
