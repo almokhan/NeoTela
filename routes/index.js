@@ -1,118 +1,68 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
-const xml2js = require('xml2js');
+const fs = require('fs');
 
-// Configuração do axios
-const axiosInstance = axios.create({
-  timeout: 5000,
-  headers: {
-    'Accept': 'application/xml'
-  },
-  responseType: 'text'
-});
-
-// Função para converter XML para JSON
-function xmlToJson(xml) {
-  return new Promise((resolve, reject) => {
-    xml2js.parseString(xml, { explicitArray: false, mergeAttrs: true }, (err, result) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(result);
-      }
-    });
-  });
-}
-
-// Função para processar os dados do LabVIEW
-function processLabVIEWData(data) {
-  const response = data.Response;
-  const result = {
-    timeString: '',
-    aprovadosPLC: 0,
-    arrayColors: [],
-    arrayValues: []
-  };
-
-  response.Terminal.forEach(terminal => {
-    switch(terminal.Name) {
-      case 'time string':
-        result.timeString = terminal.Value;
-        break;
-      case 'Aprovados PLC':
-        result.aprovadosPLC = parseInt(terminal.Value);
-        break;
-      case 'Array Colors':
-        result.arrayColors = terminal.Value.Value.map(v => parseInt(v));
-        break;
-      case 'ANDON Array Values':
-        result.arrayValues = terminal.Value.Value;
-        break;
-    }
-  });
-
-  return result;
-}
-
-// Função para obter dados do LabVIEW
-async function getLabVIEWData() {
-  try {
-    const response = await axiosInstance.get('http://127.0.0.1:8080/WebService1/HTTP_ANDON');
-    console.log('Dados XML recebidos do LabVIEW:', response.data);
-    
-    const jsonData = await xmlToJson(response.data);
-    console.log('Dados convertidos para JSON:', JSON.stringify(jsonData, null, 2));
-
-    return processLabVIEWData(jsonData);
-  } catch (error) {
-    throw new Error(`Erro ao obter dados do LabVIEW: ${error.message}`);
-  }
-}
+// Função para ler e processar o arquivo
+const filePath = 'D:/MES GAMATECH/Labview/PULSE/ANDON.DAT'; // Altere para o caminho correto do seu arquivo
 
 // Rota principal
-router.get('/', async function(req, res, next) {
+router.get('/', function(req, res, next) {
+  // Variável para armazenar os elementos
+  let elementos = []; // Inicializa como array vazio
+
   try {
-    const labviewData = await getLabVIEWData();
-    
-    res.render('index', { 
-      title: 'NeoTela',
-      favicon: '../public/favicon.png',
-      labviewData: labviewData.arrayValues,
-      timeString: labviewData.timeString,
-      aprovadosPLC: labviewData.aprovadosPLC,
-      arrayColors: labviewData.arrayColors
+    // Lê o arquivo e processa os dados
+    fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Erro ao ler o arquivo:', err);
+        return res.render('index', {
+          title: 'NeoTela',
+          favicon: '../public/favicon.png',
+          elementos: [],
+          error: 'Erro ao carregar os dados do arquivo.'
+        });
+      } else {
+        // Dividir o conteúdo do arquivo em elementos, separados por tabulação ou espaço
+        elementos = data.trim().split(','); // Divisão por espaços ou tabulações
+
+       
+       
+        if (String(elementos[2]).includes('1')) { //Arruma Problemas de codificação do caractere º
+          elementos[50] = '1º Turno';
+      } else if (String(elementos[2]).includes('2')) {
+          elementos[50] = '2º Turno';
+      }
+      
+      function decimalToHex(decimal) { //Tranforma decimais em hexadecimais
+        const hex = Number(decimal).toString(16);
+        return '#' + '0'.repeat(Math.max(0, 6 - hex.length)) + hex;
+    }
+      elementos[40]= decimalToHex(elementos[40]);
+      elementos[41]= decimalToHex(elementos[41]);
+
+      c = 0
+      while (c <= 50){  // Exibe o conteúdo do array elementos no console
+        console.log(c,elementos[c])
+        c = c+1
+      }
+ 
+
+        // Renderiza a view com os dados lidos
+      
+        res.render('index', { 
+          title: 'NeoTela',
+          favicon: '../public/favicon.png',
+          elementos: elementos // Passa o array de elementos para a view
+        });
+      }
     });
   } catch (error) {
     console.error('Erro na rota principal:', error);
     res.render('index', { 
       title: 'NeoTela',
       favicon: '../public/favicon.png',
-      labviewData: [],
-      timeString: '',
-      aprovadosPLC: 0,
-      arrayColors: [],
-      error: 'Erro ao carregar dados do servidor'
-    });
-  }
-});
-
-// Rota para atualização de dados
-router.get('/atualizar-dados', async function(req, res) {
-  try {
-    const labviewData = await getLabVIEWData();
-    
-    res.json({
-      labviewData: labviewData.arrayValues,
-      timeString: labviewData.timeString,
-      aprovadosPLC: labviewData.aprovadosPLC,
-      arrayColors: labviewData.arrayColors
-    });
-  } catch (error) {
-    console.error('Erro na atualização:', error);
-    res.status(500).json({ 
-      error: 'Erro ao atualizar dados',
-      message: error.message 
+      elementos: [], // Passa um array vazio em caso de erro
+      error: error.message
     });
   }
 });
