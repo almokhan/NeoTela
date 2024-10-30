@@ -35,11 +35,11 @@ router.get('/', function(req, res, next) {
     }
       elementos[40]= decimalToHex(elementos[40]);
       elementos[41]= decimalToHex(elementos[41]);
-      c=0
-      while(c<50){
-        console.log(elementos[c])
-        c++
-      }
+      //c=0
+      //while(c<50){
+        //console.log(elementos[c])
+        //c++
+     // }
  
 
         // Renderiza a view com os dados lidos
