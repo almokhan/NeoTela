@@ -8,53 +8,52 @@
             font-family: Arial, sans-serif;
             background-color: #c7c7c7;
             margin: 0;
-            padding: 10px;
+            padding: 0;
             color: #333;
-            font-size: 62.4px;
+            font-size: 46px;
         }
         .dashboard {
             display: flex;
-            gap: 0;
             width: 100%;
+            height: 92vh;
             align-items: stretch;
         }
         .table-container {
             background-color: #504f4f;
             border: 3px solid black;
-            overflow: hidden;
+            overflow-x: auto;
             display: flex;
             position: relative;
+            font-size: 46px;
+            padding: 10px;
+            flex: 1;
         }
         .table-container:first-child {
-            width: 70%;
-        }
-        .table-container:last-child {
-            width: 30%;
+            flex: 3;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             border-spacing: 0;
             table-layout: fixed;
-            position: relative;
-            z-index: 0;
+            word-break: break-word;
         }
         th, td {
             background-color: #504f4f;
-            padding: 21px;
-            text-align: left; /* Align cell content to the left */
+            padding: 10px;
+            text-align: left;
             color: white;
             border: none;
             vertical-align: middle;
-            font-size: 86.4px;
+            font-size: 40px;
         }
         th {
             background-color: #494949; 
             color: yellow;
-            font-size: 86.4px;
+            font-size: 36px;
             padding: 10px;
             height: 20px;
-            text-align: left; /* Align header text to the left */
+            text-align: left;
         }
         .yellow-bg { 
             background-color: #504f4f; 
@@ -86,19 +85,21 @@
             color: white;
         }
         h2 {
-            font-size: 86.4px;
+            font-size: 16px;
         }
         .message {
             display: flex;
             justify-content: center;
             align-items: center;
+            color: black;
+            font-size: 36px;
         }
         .big-number {
             position: absolute;
-            top: 61%;
-            left: 53%;
+            top: 60%;
+            left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 270px;
+            font-size: 80px;
             color: rgb(250, 234, 9);
             font-weight: bold;
             z-index: 1;
@@ -106,17 +107,27 @@
         }
         .big-number-b {
             position: absolute;
-            top: 61%;
-            left: 87%;
+            top: 60%;
+            left: 88%;
             transform: translate(-50%, -50%);
-            font-size: 270px;
+            font-size: 80px;
             color: rgb(250, 234, 9);
             font-weight: bold;
             z-index: 1;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-        .table-container:last-child .big-number {
-            font-size: 120px;
+
+
+        @media (max-width: 767px) {
+            .dashboard {
+                flex-direction: column;
+            }
+            .table-container {
+                flex: auto;
+            }
+            .table-container:first-child {
+                flex: auto;
+            }
         }
     </style>
     <meta http-equiv="refresh" content="13">
@@ -124,71 +135,70 @@
 <body>
     <div id="errorMessage" class="error-message"></div>
     <h2><span id="systemMessage" class="message">{{elementos.[1]}}</span></h2>
-
     <div class="dashboard">
-        <div class="table-container">
-            <div class="big-number">{{elementos.[9]}}</div>
-            <div class="big-number-b">{{elementos.[14]}}</div>
-            <table>
-                <tr>
-                    <th colspan="3">Periodo: <span id="periodoSpan">{{elementos.[50]}}</span></th>
-                </tr>
-                <tr>
-                    <td colspan="3" class="destaque-cell">Produto: <span id="produtoSpan">{{elementos.[4]}}</span></td>
-                </tr>
-                <tr>
-                    <td class="yellow-bg">Planejada</td>
-                    <td style="background-color: {{elementos.[40]}}; color: black;"><span id="valor16">{{elementos.[5]}}</span></td>
-                    <td class="gray-bg"><span id="valor17">{{elementos.[10]}}</span></td>
-                </tr>
-                <tr>
-                    <td class="yellow-bg">Expectativa</td>
-                    <td style="background-color: {{elementos.[40]}}; color: black;"><span id="valor18">{{elementos.[6]}}</span></td>
-                    <td class="gray-bg"><span id="valor19">{{elementos.[11]}}</span></td>
-                </tr>
-                <tr>
-                    <td class="yellow-bg">Produzidas</td>
-                    <td style="background-color: {{elementos.[40]}}; color: black;"><span id="valor20">{{elementos.[7]}}</span></td>
-                    <td class="gray-bg"><span id="valor21">{{elementos.[12]}}</span></td>
-                </tr>
-                <tr>
-                    <td class="yellow-bg">Reprovadas</td>
-                    <td style="background-color: {{elementos.[40]}}; color: black;"><span id="valor22">{{elementos.[8]}}</span></td>
-                    <td class="gray-bg"><span id="valor23">{{elementos.[13]}}</span></td>
-                </tr>
-                <tr>
-                    <td class="gray-bg"> </td>
-                    <td class="gray-bg">Hora </td>
-                    <td class="gray-bg">Turno </td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="table-container">
-            
-            <table>
-                <tr>
-                    <th colspan="2">Linha: <span id="linhaSpan">{{elementos.[3]}}</span></th>
-                </tr>
-                <tr>
-                    <td colspan="2" class="destaque-cell">Hora X Hora</td>
-                </tr>
-                <tr>
-                    <td class="destaque-cell">Hora</td>
-                    <td class="destaque-cell">Produção</td>
-                </tr>
-                <tr><td>{{elementos.[15]}}</td><td><span id="valor24">{{elementos.[25]}}</span></td></tr>
-                <tr><td class="imparhora-cell">{{elementos.[16]}}</td><td class="imparhora-cell"><span id="valor25">{{elementos.[26]}}</span></td></tr>
-                <tr><td>{{elementos.[17]}}</td><td><span id="valor26">{{elementos.[27]}}</span></td></tr>
-                <tr><td class="imparhora-cell">{{elementos.[18]}}</td><td class="imparhora-cell"><span id="valor27">{{elementos.[28]}}</span></td></tr>
-                <tr><td>{{elementos.[19]}}</td><td><span id="valor28">{{elementos.[29]}}</span></td></tr>
-                <tr><td class="imparhora-cell">{{elementos.[20]}}</td><td class="imparhora-cell"><span id="valor29">{{elementos.[30]}}</span></td></tr>
-                <tr><td>{{elementos.[21]}}</td><td><span id="valor30">{{elementos.[31]}}</span></td></tr>
-                <tr><td class="imparhora-cell">{{elementos.[22]}}</td><td class="imparhora-cell"><span id="valor31">{{elementos.[32]}}</span></td></tr>
-                <tr><td>{{elementos.[23]}}</td><td><span id="valor32">{{elementos.[33]}}</span></td></tr>
-                <tr><td class="imparhora-cell">{{elementos.[24]}}</td><td class="imparhora-cell"><span id="valor33">{{elementos.[34]}}</span></td></tr>
-            </table>
-        </div>
+    <div class="table-container">
+        <div class="big-number">{{elementos.[9]}}</div>
+        <div class="big-number-b">{{elementos.[14]}}</div>
+        <table>
+            <tr>
+                <th colspan="3">Periodo: <span id="periodoSpan">{{elementos.[2]}}</span></th>
+            </tr>
+            <tr>
+                <td colspan="3" class="destaque-cell">Produto: <span id="produtoSpan">{{elementos.[4]}}</span></td>
+            </tr>
+            <tr>
+                <td class="yellow-bg" style="width: 33.33%;">Planejado</td>
+                <td style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span id="valor16">{{elementos.[5]}}</span></td>
+                <td class="gray-bg" style="width: 33.33%;"><span id="valor17">{{elementos.[10]}}</span></td>
+            </tr>
+            <tr>
+                <td class="yellow-bg" style="width: 33.33%;">Expectativa</td>
+                <td style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span id="valor18">{{elementos.[6]}}</span></td>
+                <td class="gray-bg" style="width: 33.33%;"><span id="valor19">{{elementos.[11]}}</span></td>
+            </tr>
+            <tr>
+                <td class="yellow-bg" style="width: 33.33%;">Produzido</td>
+                <td style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span id="valor20">{{elementos.[7]}}</span></td>
+                <td class="gray-bg" style="width: 33.33%;"><span id="valor21">{{elementos.[12]}}</span></td>
+            </tr>
+            <tr>
+                <td class="yellow-bg" style="width: 33.33%;">Reprovado</td>
+                <td style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span id="valor22">{{elementos.[8]}}</span></td>
+                <td class="gray-bg" style="width: 33.33%;"><span id="valor23">{{elementos.[13]}}</span></td>
+            </tr>
+            <tr>
+                <td class="gray-bg" style="width: 33.33%;"> </td>
+                <td class="gray-bg" style="width: 33.33%;">Hora </td>
+                <td class="gray-bg" style="width: 33.33%;">Turno </td>
+            </tr>
+        </table>
     </div>
+
+    <div class="table-container">
+        
+        <table>
+            <tr>
+                <th colspan="2">Linha: <span id="linhaSpan">{{elementos.[3]}}</span></th>
+            </tr>
+            <tr>
+                <td colspan="2" class="destaque-cell">Hora X Hora</td>
+            </tr>
+            <tr>
+                <td class="destaque-cell">Hora</td>
+                <td class="destaque-cell">Produção</td>
+            </tr>
+            <tr><td>{{elementos.[15]}}</td><td><span id="valor24">{{elementos.[25]}}</span></td></tr>
+            <tr><td class="imparhora-cell">{{elementos.[16]}}</td><td class="imparhora-cell"><span id="valor25">{{elementos.[26]}}</span></td></tr>
+            <tr><td>{{elementos.[17]}}</td><td><span id="valor26">{{elementos.[27]}}</span></td></tr>
+            <tr><td class="imparhora-cell">{{elementos.[18]}}</td><td class="imparhora-cell"><span id="valor27">{{elementos.[28]}}</span></td></tr>
+            <tr><td>{{elementos.[19]}}</td><td><span id="valor28">{{elementos.[29]}}</span></td></tr>
+            <tr><td class="imparhora-cell">{{elementos.[20]}}</td><td class="imparhora-cell"><span id="valor29">{{elementos.[30]}}</span></td></tr>
+            <tr><td>{{elementos.[21]}}</td><td><span id="valor30">{{elementos.[31]}}</span></td></tr>
+            <tr><td class="imparhora-cell">{{elementos.[22]}}</td><td class="imparhora-cell"><span id="valor31">{{elementos.[32]}}</span></td></tr>
+            <tr><td>{{elementos.[23]}}</td><td><span id="valor32">{{elementos.[33]}}</span></td></tr>
+            <tr><td class="imparhora-cell">{{elementos.[24]}}</td><td class="imparhora-cell"><span id="valor33">{{elementos.[34]}}</span></td></tr>
+        </table>
+    </div>
+</div>
 </body>
 </html>
