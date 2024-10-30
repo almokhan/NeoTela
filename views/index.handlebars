@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="ANSI">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
@@ -10,6 +10,7 @@
             margin: 0;
             padding: 10px;
             color: #333;
+            font-size: 62.4px;
         }
         .dashboard {
             display: flex;
@@ -22,38 +23,51 @@
             border: 3px solid black;
             overflow: hidden;
             display: flex;
+            position: relative;
         }
         .table-container:first-child {
-            width: 60%;
+            width: 70%;
         }
         .table-container:last-child {
-            width: 40%;
+            width: 30%;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             border-spacing: 0;
             table-layout: fixed;
+            position: relative;
+            z-index: 0;
         }
         th, td {
             background-color: #504f4f;
             padding: 21px;
-            text-align: center;
-            color: black;
+            text-align: left; /* Align cell content to the left */
+            color: white;
             border: none;
             vertical-align: middle;
-            font-size: 48px;
+            font-size: 86.4px;
         }
         th {
             background-color: #494949; 
             color: yellow;
-            font-size: 48px;
+            font-size: 86.4px;
             padding: 10px;
             height: 20px;
+            text-align: left; /* Align header text to the left */
         }
-        .yellow-bg { background-color: #504f4f; color: rgb(250, 234, 9); }
-        .gray-bg { background-color: #504f4f; color: black; }
-        .gray-apr { background-color: #504f4f; color: yellow; }
+        .yellow-bg { 
+            background-color: #504f4f; 
+            color: rgb(250, 234, 9); 
+        }
+        .gray-bg { 
+            background-color: #504f4f; 
+            color: white; 
+        }
+        .gray-apr { 
+            background-color: #504f4f; 
+            color: yellow; 
+        }
         .error-message {
             color: red;
             background-color: #ffe6e6;
@@ -69,26 +83,58 @@
         }
         .imparhora-cell {
             background-color: #5f5f5f;
-            color: black;
+            color: white;
         }
         h2 {
-            font-size: 48px;
+            font-size: 86.4px;
+        }
+        .message {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .big-number {
+            position: absolute;
+            top: 61%;
+            left: 53%;
+            transform: translate(-50%, -50%);
+            font-size: 270px;
+            color: rgb(250, 234, 9);
+            font-weight: bold;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .big-number-b {
+            position: absolute;
+            top: 61%;
+            left: 87%;
+            transform: translate(-50%, -50%);
+            font-size: 270px;
+            color: rgb(250, 234, 9);
+            font-weight: bold;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .table-container:last-child .big-number {
+            font-size: 120px;
         }
     </style>
-    <meta http-equiv="refresh" content="7">
+    <meta http-equiv="refresh" content="13">
 </head>
 <body>
     <div id="errorMessage" class="error-message"></div>
-    <h2><span id="systemName">{{elementos.[1]}}</span></h2>
+    <h2><span id="systemMessage" class="message">{{elementos.[1]}}</span></h2>
 
     <div class="dashboard">
         <div class="table-container">
+            <div class="big-number">{{elementos.[9]}}</div>
+            <div class="big-number-b">{{elementos.[14]}}</div>
             <table>
                 <tr>
                     <th colspan="3">Periodo: <span id="periodoSpan">{{elementos.[50]}}</span></th>
                 </tr>
                 <tr>
-                    <td colspan="3" class="destaque-cell">Produto: <span id="produtoSpan">{{elementos.[3]}}</span></td>
+                    <td colspan="3" class="destaque-cell">Produto: <span id="produtoSpan">{{elementos.[4]}}</span></td>
                 </tr>
                 <tr>
                     <td class="yellow-bg">Planejada</td>
@@ -102,7 +148,7 @@
                 </tr>
                 <tr>
                     <td class="yellow-bg">Produzidas</td>
-                    <td style="background-color: {{elementos.[40]}}; color: black;"><span id="valor20">{{elementos.[26]}}</span></td>
+                    <td style="background-color: {{elementos.[40]}}; color: black;"><span id="valor20">{{elementos.[7]}}</span></td>
                     <td class="gray-bg"><span id="valor21">{{elementos.[12]}}</span></td>
                 </tr>
                 <tr>
@@ -112,15 +158,14 @@
                 </tr>
                 <tr>
                     <td class="gray-bg"> </td>
-                    <td class="gray-bg">Por Hora {{elementos.[9]}}</td>
-                    <td class="gray-bg">Por Turno {{elementos.[14]}}</td>
-
-
+                    <td class="gray-bg">Hora </td>
+                    <td class="gray-bg">Turno </td>
                 </tr>
             </table>
         </div>
 
         <div class="table-container">
+            
             <table>
                 <tr>
                     <th colspan="2">Linha: <span id="linhaSpan">{{elementos.[3]}}</span></th>
@@ -145,7 +190,5 @@
             </table>
         </div>
     </div>
-
-
 </body>
 </html>
