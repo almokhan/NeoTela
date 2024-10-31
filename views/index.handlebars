@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="ANSI">
@@ -14,7 +15,7 @@
         .dashboard {
             display: flex;
             width: 100%;
-            height: 92vh;
+            height: 88vh;
             align-items: stretch;
         }
         .table-container {
@@ -23,12 +24,21 @@
             overflow-x: auto;
             display: flex;
             position: relative;
-            font-size: 46px;
             padding: 10px;
-            flex: 1.15; /* Aumentado em 15% */
+            flex: 1.15;
         }
         .table-container:first-child {
             flex: 3;
+        }
+        /* Fonte para a primeira tabela (esquerda) */
+        .table-container:first-child th,
+        .table-container:first-child td {
+            font-size: 45px;
+        }
+        /* Fonte para a segunda tabela (direita) */
+        .table-container:last-child th,
+        .table-container:last-child td {
+            font-size: 30px;
         }
         table {
             width: 100%;
@@ -45,13 +55,11 @@
             color: white;
             border: none;
             vertical-align: middle;
-            font-size: 30px;
-            height: 1px; /* Força distribuição uniforme */
+            height: 1px;
         }
         th {
             background-color: #494949; 
             color: yellow;
-            font-size: 36px;
             padding: 10px;
             height: 20px;
             text-align: left;
@@ -100,7 +108,7 @@
             top: 70%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 90px;
+            font-size: 95px;
             color: rgb(0, 0, 0);
             font-weight: bold;
             z-index: 1;
@@ -111,7 +119,7 @@
             top: 70%;
             left: 88%;
             transform: translate(-50%, -50%);
-            font-size: 90px;
+            font-size: 95px;
             color: rgb(250, 234, 9);
             font-weight: bold;
             z-index: 1;
@@ -130,62 +138,63 @@
             }
         }
     </style>
-    <meta http-equiv="refresh" content="13">
+   
 </head>
 <body>
+   
     <div id="errorMessage" class="error-message"></div>
-    <h2><span id="systemMessage" class="message">{{elementos.[1]}}</span></h2>
+   
+    <h2> <button onclick="toggleFullscreen()">Tela Cheia</button><span id="systemMessage" class="message">{{elementos.[1]}}</span></h2>
     <div class="dashboard">
     <div class="table-container">
         <div class="big-number">{{elementos.[9]}}</div>
         <div class="big-number-b">{{elementos.[14]}}</div>
         <table>
             <tr>
-                <th colspan="3">Periodo: <span id="periodoSpan">{{elementos.[2]}}</span></th>
+                <th colspan="3">PERIODO: <span id="periodoSpan">{{elementos.[2]}}</span></th>
             </tr>
             <tr>
-                <td colspan="3" class="destaque-cell">Produto: <span id="produtoSpan">{{elementos.[4]}}</span></td>
+                <td colspan="3" class="destaque-cell">PRODUTO: <span id="produtoSpan">{{elementos.[4]}}</span></td>
             </tr>
              <tr>
                 <td> </td>
-                <td class="yellow-bg" style="width: 33.33%;">Hora </td>
-                <td class="yellow-bg" style="width: 33.33%;">Turno </td>
+                <td class="yellow-bg" style="width: 33.33%;">HORA </td>
+                <td class="yellow-bg" style="width: 33.33%;">TURNO </td>
             </tr>
             <tr>
-                <td class="yellow-bg" style="width: 33.33%;">Planejado</td>
+                <td class="yellow-bg" style="width: 33.33%;">PLANEJADO</td>
                 <td style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span id="valor16">{{elementos.[5]}}</span></td>
                 <td class="gray-bg" style="width: 33.33%;"><span id="valor17">{{elementos.[10]}}</span></td>
             </tr>
             <tr>
-                <td class="yellow-bg" style="width: 33.33%;">Expectativa</td>
+                <td class="yellow-bg" style="width: 33.33%;">EXPECTATIVA</td>
                 <td style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span id="valor18">{{elementos.[6]}}</span></td>
                 <td class="gray-bg" style="width: 33.33%;"><span id="valor19">{{elementos.[11]}}</span></td>
             </tr>
             <tr>
-                <td class="yellow-bg" style="width: 33.33%;">Produzido</td>
+                <td class="yellow-bg" style="width: 33.33%;">PRODUZIDO</td>
                 <td style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span id="valor20">{{elementos.[7]}}</span></td>
                 <td class="gray-bg" style="width: 33.33%;"><span id="valor21">{{elementos.[12]}}</span></td>
             </tr>
             <tr>
-                <td class="yellow-bg" style="width: 33.33%;">Reprovado</td>
+                <td class="yellow-bg" style="width: 33.33%;">REPROVADO</td>
                 <td style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span id="valor22">{{elementos.[8]}}</span></td>
                 <td class="gray-bg" style="width: 33.33%;"><span id="valor23">{{elementos.[13]}}</span></td>
             </tr>
-           
         </table>
     </div>
 
     <div class="table-container">
         <table>
             <tr>
-                <th colspan="2">Linha: <span id="linhaSpan">{{elementos.[3]}}</span></th>
+                <th colspan="2">LINHA: <span id="linhaSpan">{{elementos.[3]}}</span></th>
             </tr>
             <tr>
-                <td colspan="2" class="destaque-cell">Hora X Hora</td>
+                <td colspan="2" class="destaque-cell">HORA X HORA</td>
             </tr>
             <tr>
-                <td class="destaque-cell">Hora</td>
-                <td class="destaque-cell">Produção</td>
+                <td class="destaque-cell">HORA</td>
+                <td class="destaque-cell">PRODUÇÃO</td>
             </tr>
             <tr><td>{{elementos.[15]}}</td><td><span id="valor24">{{elementos.[25]}}</span></td></tr>
             <tr><td class="imparhora-cell">{{elementos.[16]}}</td><td class="imparhora-cell"><span id="valor25">{{elementos.[26]}}</span></td></tr>
@@ -200,5 +209,72 @@
         </table>
     </div>
 </div>
+
+    <script>
+    // Função para tela cheia
+    function openFullscreen() {
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+    }
+
+    // Função para atualizar os dados
+    function updateData() {
+        fetch('/getData')
+            .then(response => response.json())
+            .then(data => {
+                const elementos = data.elementos;
+                
+                // Atualiza os elementos na página
+                document.getElementById('systemMessage').textContent = elementos[1];
+                document.getElementById('periodoSpan').textContent = elementos[2];
+                document.getElementById('linhaSpan').textContent = elementos[3];
+                document.getElementById('produtoSpan').textContent = elementos[4];
+                
+                // Atualiza valores da primeira tabela
+                document.getElementById('valor16').textContent = elementos[5];
+                document.getElementById('valor17').textContent = elementos[10];
+                document.getElementById('valor18').textContent = elementos[6];
+                document.getElementById('valor19').textContent = elementos[11];
+                document.getElementById('valor20').textContent = elementos[7];
+                document.getElementById('valor21').textContent = elementos[12];
+                document.getElementById('valor22').textContent = elementos[8];
+                document.getElementById('valor23').textContent = elementos[13];
+                
+                // Atualiza os números grandes
+                document.querySelector('.big-number').textContent = elementos[9];
+                document.querySelector('.big-number-b').textContent = elementos[14];
+                
+                // Atualiza a tabela hora x hora
+                for (let i = 24; i <= 33; i++) {
+                    document.getElementById('valor' + i).textContent = elementos[i + 1];
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao atualizar dados:', error);
+            });
+    }
+
+   
+
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+}
+
+     
+  
+    // Configura a atualização automática
+    setInterval(updateData, 15000); // Atualiza a cada 15 segundos
+    </script>
+
 </body>
 </html>
