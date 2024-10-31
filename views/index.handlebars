@@ -56,6 +56,7 @@
             border: none;
             vertical-align: middle;
             height: 1px;
+            font-weight: bold;
         }
         th {
             background-color: #494949; 
@@ -63,18 +64,22 @@
             padding: 10px;
             height: 20px;
             text-align: left;
+            font-weight: bold;
         }
         .yellow-bg { 
             background-color: #504f4f; 
             color: rgb(250, 234, 9); 
+            font-weight: bold;
         }
         .gray-bg { 
             background-color: #504f4f; 
             color: white; 
+            font-weight: bold;
         }
         .gray-apr { 
             background-color: #504f4f; 
             color: yellow; 
+            font-weight: bold;
         }
         .error-message {
             color: red;
@@ -89,9 +94,36 @@
             color: yellow;
             font-weight: bold;
         }
+        .destaquea-cell {
+            border: 1px solid yellow;
+            color: yellow;
+            font-weight: bold;
+            font-size: ;
+        
+        }
+        .destaqueb-cell {
+            border: 1px solid yellow;
+            color: yellow;
+            font-weight: bold;
+            font-size: ;
+            text-align: center;
+        }
         .imparhora-cell {
             background-color: #5f5f5f;
             color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        .parhora-cell {
+              background-color: #504f4f;
+            padding: 10px;
+            text-align: left;
+            color: white;
+            border: none;
+            vertical-align: middle;
+            height: 1px;
+            font-weight: bold;
+            text-align: center;
         }
         h2 {
             font-size: 16px;
@@ -125,6 +157,14 @@
             z-index: 1;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
+        .content-white{
+            
+            color: white;
+            font-weight: bold;
+            font-size: ;
+        
+
+        }
 
         @media (max-width: 767px) {
             .dashboard {
@@ -151,10 +191,16 @@
         <div class="big-number-b">{{elementos.[14]}}</div>
         <table>
             <tr>
-                <th colspan="3">PERIODO: <span id="periodoSpan">{{elementos.[2]}}</span></th>
+                <th colspan="1" class="destaque-cell">PERIODO: <span id="periodoSpan" class="content-white">{{elementos.[2]}}</span></th>
+                <td colspan="2"class="destaquea-cell">PRODUTO: <span id="produtoSpan" class="content-white">{{elementos.[4]}}</span></td>
             </tr>
             <tr>
-                <td colspan="3" class="destaque-cell">PRODUTO: <span id="produtoSpan">{{elementos.[4]}}</span></td>
+                
+                <th class="destaquea-cell" >OPERADORES: <span id="asa" class="content-white">4</span></th>
+                <th colspan="2"class="destaquea-cell">LINHA: <span id="linhaSpan" class="content-white">{{elementos.[3]}}</span></th>
+
+              
+            
             </tr>
              <tr>
                 <td> </td>
@@ -186,25 +232,23 @@
 
     <div class="table-container">
         <table>
+           
             <tr>
-                <th colspan="2">LINHA: <span id="linhaSpan">{{elementos.[3]}}</span></th>
+                <td colspan="2" class="destaqueb-cell">HORA X HORA</td>
             </tr>
             <tr>
-                <td colspan="2" class="destaque-cell">HORA X HORA</td>
+                <td class="destaqueb-cell">HORA</td>
+                <td class="destaqueb-cell">PRODUÇÃO</td>
             </tr>
-            <tr>
-                <td class="destaque-cell">HORA</td>
-                <td class="destaque-cell">PRODUÇÃO</td>
-            </tr>
-            <tr><td>{{elementos.[15]}}</td><td><span id="valor24">{{elementos.[25]}}</span></td></tr>
-            <tr><td class="imparhora-cell">{{elementos.[16]}}</td><td class="imparhora-cell"><span id="valor25">{{elementos.[26]}}</span></td></tr>
-            <tr><td>{{elementos.[17]}}</td><td><span id="valor26">{{elementos.[27]}}</span></td></tr>
-            <tr><td class="imparhora-cell">{{elementos.[18]}}</td><td class="imparhora-cell"><span id="valor27">{{elementos.[28]}}</span></td></tr>
-            <tr><td>{{elementos.[19]}}</td><td><span id="valor28">{{elementos.[29]}}</span></td></tr>
-            <tr><td class="imparhora-cell">{{elementos.[20]}}</td><td class="imparhora-cell"><span id="valor29">{{elementos.[30]}}</span></td></tr>
-            <tr><td>{{elementos.[21]}}</td><td><span id="valor30">{{elementos.[31]}}</span></td></tr>
+            <tr><td class="parhora-cell">{{elementos.[15]}}</td><td class="parhora-cell">{{elementos.[25]}}</td></tr>
+            <tr><td class="imparhora-cell">{{elementos.[16]}}</td><td class="imparhora-cell">{{elementos.[26]}}</td></tr>
+            <tr><td class="parhora-cell">{{elementos.[17]}}</td><td class="parhora-cell">{{elementos.[27]}}</td></tr>
+            <tr><td class="imparhora-cell">{{elementos.[18]}}</td><td class="imparhora-cell">{{elementos.[28]}}</td></tr>
+            <tr><td class="parhora-cell">{{elementos.[19]}}</td><td class="parhora-cell">{{elementos.[29]}}</td></tr>
+            <tr><td class="imparhora-cell">{{elementos.[20]}}</td><td class="imparhora-cell">{{elementos.[30]}}</td></tr>
+            <tr><td class="parhora-cell">{{elementos.[21]}}</td><td class="parhora-cell">{{elementos.[31]}}</td></tr>
             <tr><td class="imparhora-cell">{{elementos.[22]}}</td><td class="imparhora-cell"><span id="valor31">{{elementos.[32]}}</span></td></tr>
-            <tr><td>{{elementos.[23]}}</td><td><span id="valor32">{{elementos.[33]}}</span></td></tr>
+            <tr><td class="parhora-cell">{{elementos.[23]}}</td><td class="parhora-cell">{{elementos.[33]}}</td></tr>
             <tr><td class="imparhora-cell">{{elementos.[24]}}</td><td class="imparhora-cell"><span id="valor33">{{elementos.[34]}}</span></td></tr>
         </table>
     </div>
