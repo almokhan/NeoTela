@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 //const filePath = 'D:/MES GAMATECH/Labview/PULSE/ANDON.DAT';
-const filePath = 'C:/Users/Gamatech/Downloads/ANDON.DAT';
+const filePath = 'D:/MES GAMATECH/Labview/PULSE/ANDON.DAT';
 
 // Função para ler o arquivo e processar os dados
 function readFileData() {
