@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
+//const filePath = 'D:/MES GAMATECH/Labview/PULSE/ANDON.DAT';
 const filePath = 'C:/Users/Gamatech/Downloads/ANDON.DAT';
 
 // Função para ler o arquivo e processar os dados
@@ -20,11 +21,14 @@ function readFileData() {
             
             elementos[40] = decimalToHex(elementos[40]);
             elementos[41] = decimalToHex(elementos[41]);
-           // c = 0
-          //while(c <= 50){
-          //console.log(elementos[c])
-          // c++
-          //} 
+            elementos[38] = decimalToHex(elementos[38]);
+
+
+            c = 0
+          while(c <= 50){
+          console.log(elementos[c])
+          /c++
+          } 
             
             resolve(elementos);
         });

@@ -4,7 +4,7 @@
     <meta charset="ANSI">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {
+       body {
             font-family: Arial, sans-serif;
             background-color: #c7c7c7;
             margin: 0;
@@ -17,6 +17,11 @@
             width: 100%;
             height: 88vh;
             align-items: stretch;
+            position: relative;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 0 10px;
+            box-sizing: border-box;
         }
         .table-container {
             background-color: #504f4f;
@@ -25,10 +30,15 @@
             display: flex;
             position: relative;
             padding: 10px;
-            flex: 1.15;
+            min-width: 0;
         }
         .table-container:first-child {
             flex: 3;
+        }
+        .table-container:last-child {
+            flex: 1.15;
+            position: sticky;
+            right: 10px;
         }
         /* Fonte para a primeira tabela (esquerda) */
         .table-container:first-child th,
@@ -56,6 +66,7 @@
             border: none;
             vertical-align: middle;
             height: 1px;
+            font-weight: bold;
         }
         th {
             background-color: #494949; 
@@ -63,18 +74,22 @@
             padding: 10px;
             height: 20px;
             text-align: left;
+            font-weight: bold;
         }
         .yellow-bg { 
             background-color: #504f4f; 
             color: rgb(250, 234, 9); 
+            font-weight: bold;
         }
         .gray-bg { 
             background-color: #504f4f; 
             color: white; 
+            font-weight: bold;
         }
         .gray-apr { 
             background-color: #504f4f; 
             color: yellow; 
+            font-weight: bold;
         }
         .error-message {
             color: red;
@@ -89,9 +104,35 @@
             color: yellow;
             font-weight: bold;
         }
+        .destaquea-cell {
+            border: 1px solid yellow;
+            color: yellow;
+            font-weight: bold;
+            font-size: ;
+        }
+        .destaqueb-cell {
+            border: 1px solid yellow;
+            color: yellow;
+            font-weight: bold;
+            font-size: ;
+            text-align: center;
+        }
         .imparhora-cell {
             background-color: #5f5f5f;
             color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        .parhora-cell {
+            background-color: #504f4f;
+            padding: 10px;
+            text-align: left;
+            color: white;
+            border: none;
+            vertical-align: middle;
+            height: 1px;
+            font-weight: bold;
+            text-align: center;
         }
         h2 {
             font-size: 16px;
@@ -125,6 +166,21 @@
             z-index: 1;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
+        .content-white{
+            color: white;
+            font-weight: bold;
+            font-size: ;
+        }
+        .top-table{
+            background-color: blue;
+            color: purple;
+        }
+        .clean{
+           background-color:#c7c7c7; 
+        }
+        .table-message{
+            background-color: black ;
+        }
 
         @media (max-width: 767px) {
             .dashboard {
@@ -132,6 +188,7 @@
             }
             .table-container {
                 flex: auto;
+                position: static;
             }
             .table-container:first-child {
                 flex: auto;
@@ -143,18 +200,38 @@
 <body>
    
     <div id="errorMessage" class="error-message"></div>
-   
-    <h2> <button onclick="toggleFullscreen()">Tela Cheia</button><span id="systemMessage" class="message">{{elementos.[1]}}</span></h2>
+     <h2> <button onclick="toggleFullscreen()">Tela Cheia</button></h2>
+     <div>
+   <table>
+        <tr class=" top-table">
+            <td class="clean">
+
+            </td>
+            <td class="">
+                <span id="systemMessage" class="message">{{elementos.[1]}}</span>
+            </td>
+            <td class="clean">
+
+            </td>
+        </tr>
+   </table>
+   </div>
     <div class="dashboard">
     <div class="table-container">
         <div class="big-number">{{elementos.[9]}}</div>
         <div class="big-number-b">{{elementos.[14]}}</div>
         <table>
             <tr>
-                <th colspan="3">PERIODO: <span id="periodoSpan">{{elementos.[2]}}</span></th>
+                <th colspan="1" class="destaque-cell">PERIODO: <span id="periodoSpan" class="content-white">{{elementos.[2]}}</span></th>
+                <td colspan="2"class="destaquea-cell">PRODUTO: <span id="produtoSpan" class="content-white">{{elementos.[4]}}</span></td>
             </tr>
             <tr>
-                <td colspan="3" class="destaque-cell">PRODUTO: <span id="produtoSpan">{{elementos.[4]}}</span></td>
+                
+                <th class="destaquea-cell" >OPERADORES: <span id="asa" class="content-white">4</span></th>
+                <th colspan="2"class="destaquea-cell">LINHA: <span id="linhaSpan" class="content-white">{{elementos.[3]}}</span></th>
+
+              
+            
             </tr>
              <tr>
                 <td> </td>
@@ -186,26 +263,24 @@
 
     <div class="table-container">
         <table>
+           
             <tr>
-                <th colspan="2">LINHA: <span id="linhaSpan">{{elementos.[3]}}</span></th>
+                <td colspan="2" class="destaqueb-cell">HORA X HORA</td>
             </tr>
             <tr>
-                <td colspan="2" class="destaque-cell">HORA X HORA</td>
+                <td class="destaqueb-cell">HORA</td>
+                <td class="destaqueb-cell">PRODUÇÃO</td>
             </tr>
-            <tr>
-                <td class="destaque-cell">HORA</td>
-                <td class="destaque-cell">PRODUÇÃO</td>
-            </tr>
-            <tr><td>{{elementos.[15]}}</td><td><span id="valor24">{{elementos.[25]}}</span></td></tr>
-            <tr><td class="imparhora-cell">{{elementos.[16]}}</td><td class="imparhora-cell"><span id="valor25">{{elementos.[26]}}</span></td></tr>
-            <tr><td>{{elementos.[17]}}</td><td><span id="valor26">{{elementos.[27]}}</span></td></tr>
-            <tr><td class="imparhora-cell">{{elementos.[18]}}</td><td class="imparhora-cell"><span id="valor27">{{elementos.[28]}}</span></td></tr>
-            <tr><td>{{elementos.[19]}}</td><td><span id="valor28">{{elementos.[29]}}</span></td></tr>
-            <tr><td class="imparhora-cell">{{elementos.[20]}}</td><td class="imparhora-cell"><span id="valor29">{{elementos.[30]}}</span></td></tr>
-            <tr><td>{{elementos.[21]}}</td><td><span id="valor30">{{elementos.[31]}}</span></td></tr>
-            <tr><td class="imparhora-cell">{{elementos.[22]}}</td><td class="imparhora-cell"><span id="valor31">{{elementos.[32]}}</span></td></tr>
-            <tr><td>{{elementos.[23]}}</td><td><span id="valor32">{{elementos.[33]}}</span></td></tr>
-            <tr><td class="imparhora-cell">{{elementos.[24]}}</td><td class="imparhora-cell"><span id="valor33">{{elementos.[34]}}</span></td></tr>
+            <tr><td id="valor55" class="parhora-cell">{{elementos.[15]}}</td><td id="valor24" class="parhora-cell">{{elementos.[25]}}</td></tr>
+            <tr><td id="valor56" class="imparhora-cell">{{elementos.[16]}}</td><td id="valor25" class="imparhora-cell">{{elementos.[26]}}</td></tr>
+            <tr><td id="valor57" class="parhora-cell">{{elementos.[17]}}</td><td id="valor26" class="parhora-cell">{{elementos.[27]}}</td></tr>
+            <tr><td id="valor58" class="imparhora-cell">{{elementos.[18]}}</td><td id="valor27" class="imparhora-cell">{{elementos.[28]}}</td></tr>
+            <tr><td id="valor59" class="parhora-cell">{{elementos.[19]}}</td><td id="valor28" class="parhora-cell">{{elementos.[29]}}</td></tr>
+            <tr><td id="valor60" class="imparhora-cell">{{elementos.[20]}}</td><td id="valor29" class="imparhora-cell">{{elementos.[30]}}</td></tr>
+            <tr><td id="valor61" class="parhora-cell">{{elementos.[21]}}</td><td id="valor30" class="parhora-cell">{{elementos.[31]}}</td></tr>
+            <tr><td id="valor62" class="imparhora-cell">{{elementos.[22]}}</td><td id="valor31" class="imparhora-cell"><span id="valor31">{{elementos.[32]}}</span></td></tr>
+            <tr><td id="valor63" class="parhora-cell">{{elementos.[23]}}</td><td id="valor32" class="parhora-cell">{{elementos.[33]}}</td></tr>
+            <tr><td id="valor64" class="imparhora-cell">{{elementos.[24]}}</td><td id="valor33" class="imparhora-cell"><span id="valor33">{{elementos.[34]}}</span></td></tr>
         </table>
     </div>
 </div>
@@ -245,6 +320,19 @@
                 document.getElementById('valor21').textContent = elementos[12];
                 document.getElementById('valor22').textContent = elementos[8];
                 document.getElementById('valor23').textContent = elementos[13];
+
+                //Atualiza as horas
+                document.getElementById('valor55').textContent = elementos[15];
+                document.getElementById('valor56').textContent = elementos[16];
+                document.getElementById('valor57').textContent = elementos[17];
+                document.getElementById('valor58').textContent = elementos[18];
+                document.getElementById('valor59').textContent = elementos[19];
+                document.getElementById('valor60').textContent = elementos[20];
+                document.getElementById('valor61').textContent = elementos[21];
+                document.getElementById('valor62').textContent = elementos[22];
+                document.getElementById('valor63').textContent = elementos[23];
+                document.getElementById('valor64').textContent = elementos[24];
+                
                 
                 // Atualiza os números grandes
                 document.querySelector('.big-number').textContent = elementos[9];
@@ -254,6 +342,7 @@
                 for (let i = 24; i <= 33; i++) {
                     document.getElementById('valor' + i).textContent = elementos[i + 1];
                 }
+                
             })
             .catch(error => {
                 console.error('Erro ao atualizar dados:', error);
@@ -273,7 +362,7 @@ function toggleFullscreen() {
      
   
     // Configura a atualização automática
-    setInterval(updateData, 15000); // Atualiza a cada 15 segundos
+    setInterval(updateData, 7000); // Atualiza a cada 15 segundos
     </script>
 
 </body>
