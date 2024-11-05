@@ -22,12 +22,13 @@ function readFileData() {
             elementos[40] = decimalToHex(elementos[40]);
             elementos[41] = decimalToHex(elementos[41]);
             elementos[38] = decimalToHex(elementos[38]);
+            elementos[48] = decimalToHex(elementos[48]);
 
 
             c = 0
-          while(c <= 50){
+         while(c <= 50){
           console.log(elementos[c])
-          /c++
+        c++
           } 
             
             resolve(elementos);
@@ -56,7 +57,7 @@ router.get('/', async function(req, res, next) {
     }
 });
 
-// Nova rota para atualização dos dados via AJAX
+// Nova rota para atualização dos dados via AJAX   
 router.get('/getData', async function(req, res) {
     try {
         const elementos = await readFileData();
