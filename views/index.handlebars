@@ -4,6 +4,8 @@
 <head>
     <meta charset="ANSI">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <meta http-equiv="refresh" content="12">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -207,6 +209,10 @@
         .clean {
             background-color: #c7c7c7;
         }
+        .imageneo {
+            background-color: #c7c7c7;
+          
+        }
 
         .table-message {
             background-color: black;
@@ -233,21 +239,21 @@
             }
         }
     </style>
-    <meta http-equiv="refresh" content="7">
+    
 </head>
 
 <body>
 
     <table>
         <tr>
+            <td class="clean"><img src="./gamatech.jpeg" alt="Gamatech"></td>
             <td class="clean"></td>
-            <td class="clean"></td>
-            <td style="background-color: {{elementos.[38]}}" colspan="5" class="top-table">
+            <td style="background-color: {{elementos.[38]}}" colspan="10" class="top-table">
                 <span style="background-color: {{elementos.[38]}}" id="systemMessage"
                     class="message">{{elementos.[1]}}</span>
             </td>
             <td class="clean"></td>
-            <td class="clean"></td>
+            <td class="imageneo"><img src="./neo.png" alt="Neo Powertech" width="95%"></td>
         </tr>
     </table>
     </div>
@@ -368,63 +374,7 @@
     </div>
     </div>
 
-    <script>
-        function openFullscreen() {
-            const elem = document.documentElement;
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) {
-                elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) {
-                elem.msRequestFullscreen();
-            }
-        }
-
-        function updateData() {
-            fetch('/getData')
-                .then(response => response.json())
-                .then(data => {
-                    const elementos = data.elementos;
-
-                    document.getElementById('systemMessage').textContent = elementos[1];
-                    document.getElementById('periodoSpan').textContent = elementos[2];
-                    document.getElementById('linhaSpan').textContent = elementos[3];
-                    document.getElementById('produtoSpan').textContent = elementos[4];
-
-                    document.getElementById('valor16').textContent = elementos[5];
-                    document.getElementById('valor17').textContent = elementos[10];
-                    document.getElementById('valor18').textContent = elementos[6];
-                    document.getElementById('valor19').textContent = elementos[11];
-                    document.getElementById('valor20').textContent = elementos[7];
-                    document.getElementById('valor21').textContent = elementos[12];
-                    document.getElementById('valor22').textContent = elementos[8];
-                    document.getElementById('valor23').textContent = elementos[13];
-
-                    document.getElementById('valor55').textContent = elementos[15];
-                    document.getElementById('valor56').textContent = elementos[16];
-                    document.getElementById('valor57').textContent = elementos[17];
-                    document.getElementById('valor58').textContent = elementos[18];
-                    document.getElementById('valor59').textContent = elementos[19];
-                    document.getElementById('valor60').textContent = elementos[20];
-                    document.getElementById('valor61').textContent = elementos[21];
-                    document.getElementById('valor62').textContent = elementos[22];
-                    document.getElementById('valor63').textContent = elementos[23];
-                    document.getElementById('valor64').textContent = elementos[24];
-
-                    document.querySelector('.big-number').textContent = elementos[9];
-                    document.querySelector('.big-number-b').textContent = elementos[14];
-
-                    for (let i = 24; i <= 33; i++) {
-                        document.getElementById('valor' + i).textContent = elementos[i + 1];
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro ao atualizar dados:', error);
-                });
-        }
-
-        setInterval(updateData, 7000);
-    </script>
+   
 </body>
 
 </html>
