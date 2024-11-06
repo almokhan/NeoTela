@@ -13,24 +13,24 @@ function readFileData() {
                 return;
             }
             let elementos = data.trim().split(',');
-            
+
             function decimalToHex(decimal) {
                 const hex = Number(decimal).toString(16);
                 return '#' + '0'.repeat(Math.max(0, 6 - hex.length)) + hex;
             }
-            
+
             elementos[40] = decimalToHex(elementos[40]);
             elementos[41] = decimalToHex(elementos[41]);
             elementos[38] = decimalToHex(elementos[38]);
             elementos[48] = decimalToHex(elementos[48]);
 
 
-            c = 0
-         while(c <= 50){
-          console.log(elementos[c])
-        c++
-          } 
-            
+            //c = 0
+            //while (c <= 50) {
+                //console.log(elementos[c])
+                //c++
+            //}
+
             resolve(elementos);
         });
     });
@@ -38,7 +38,7 @@ function readFileData() {
 
 
 // Rota principal
-router.get('/', async function(req, res, next) {
+router.get('/', async function (req, res, next) {
     try {
         const elementos = await readFileData();
         res.render('index', {
@@ -58,7 +58,7 @@ router.get('/', async function(req, res, next) {
 });
 
 // Nova rota para atualização dos dados via AJAX   
-router.get('/getData', async function(req, res) {
+router.get('/getData', async function (req, res) {
     try {
         const elementos = await readFileData();
         res.json({ elementos });
