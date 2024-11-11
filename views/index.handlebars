@@ -9,22 +9,26 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #c7c7c7;
+            background-color: white;
             margin: 0;
             padding: 0;
             color: #333;
             font-size: 32px;
+            height: 100%;
+
         }
 
         .dashboard {
             display: flex;
-            width: 100%;
-            height: 88vh;
+            width: 99%;
+            height: 85vh;
             align-items: stretch;
             position: relative;
             justify-content: space-between;
             padding: 0;
             box-sizing: border-box;
+            margin: 7px;
+            align-self: center;
         }
 
         .table-container {
@@ -33,14 +37,24 @@
             overflow-x: auto;
             display: flex;
             position: relative;
-            padding: 10px;
+            padding: 5px;
             min-width: 0;
         }
 
         .table-container:first-child {
-            flex: 3;
-            border-right: none;
-            /* Remove a borda direita da primeira tabela */
+            flex: 2;
+
+
+        }
+
+        .datetime-display {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: black;
+            padding: 5px;
+            margin-top: 10px;
+            background-color: white;
         }
 
         .table-container:last-child {
@@ -48,22 +62,13 @@
             position: sticky;
             right: 0;
             border-left: none;
-            /* Remove a borda esquerda da segunda tabela */
+
         }
 
-        /* Fonte para a primeira tabela (esquerda) */
-        .table-container:first-child th,
-        .table-container:first-child td {
-            font-size: 55px;
-        }
 
-        /* Fonte para a segunda tabela (direita) */
-        .table-container:last-child th,
-        .table-container:last-child td {
-            font-size: 55px;
-        }
 
-        /* Resto do CSS permanece igual */
+
+
         table {
             width: 100%;
             height: 100%;
@@ -76,7 +81,7 @@
         th,
         td {
             background-color: #504f4f;
-            padding: 10px;
+            padding: 1px 5px;
             text-align: left;
             color: white;
             border: none;
@@ -88,7 +93,7 @@
         th {
             background-color: #494949;
             color: yellow;
-            padding: 10px;
+            padding: 5px;
             height: 20px;
             text-align: left;
             font-weight: bold;
@@ -98,12 +103,24 @@
             background-color: #504f4f;
             color: rgb(250, 234, 9);
             font-weight: bold;
+            font-size: 150%;
+
+        }
+
+        .yellowb-bg {
+            background-color: #504f4f;
+            color: rgb(250, 234, 9);
+            font-weight: bold;
+            font-size: 150%;
+            text-align: center;
         }
 
         .gray-bg {
             background-color: #504f4f;
             color: white;
             font-weight: bold;
+            font-size: 150%;
+            border-left: 1px solid yellow;
         }
 
         .gray-apr {
@@ -115,7 +132,7 @@
         .error-message {
             color: red;
             background-color: #ffe6e6;
-            padding: 10px;
+            padding: 5px;
             margin: 10px 0;
             border-radius: 4px;
             display: none;
@@ -138,6 +155,7 @@
             color: yellow;
             font-weight: bold;
             text-align: center;
+            font-size: 100%;
         }
 
         .imparhora-cell {
@@ -145,11 +163,13 @@
             color: white;
             font-weight: bold;
             text-align: center;
+            font-size: 130%;
+            border-left: 1px solid yellow;
         }
 
         .parhora-cell {
             background-color: #504f4f;
-            padding: 10px;
+            padding: 5px;
             text-align: left;
             color: white;
             border: none;
@@ -157,7 +177,37 @@
             height: 1px;
             font-weight: bold;
             text-align: center;
+            font-size: 130%;
+            border-left: 1px solid yellow;
+
+
         }
+
+        .parhorab-cell {
+            background-color: #504f4f;
+            padding: 5px;
+            text-align: left;
+            color: white;
+            border: none;
+            vertical-align: middle;
+            height: 1px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 130%;
+
+
+
+        }
+
+        .imparhorab-cell {
+            background-color: #5f5f5f;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            font-size: 130%;
+
+        }
+
 
         h2 {
             font-size: 32px;
@@ -168,15 +218,16 @@
             justify-content: center;
             align-items: center;
             color: black;
-            font-size: 32px;
+            font-size: 38px;
+
         }
 
         .big-number {
             position: absolute;
             top: 60%;
-            left: 45%;
+            left: 40%;
             transform: translate(-50%, -50%);
-            font-size: 100px;
+            font-size: 110px;
             color: rgb(0, 0, 0);
             font-weight: bold;
             z-index: 1;
@@ -186,9 +237,9 @@
         .big-number-b {
             position: absolute;
             top: 60%;
-            left: 60%;
+            left: 65%;
             transform: translate(-50%, -50%);
-            font-size: 100px;
+            font-size: 110px;
 
             font-weight: bold;
             z-index: 1;
@@ -201,21 +252,39 @@
         }
 
         .top-table {
-            background-color: rgb(60, 138, 241);
+
             border: 3px solid black;
             text-align: center;
         }
 
         .clean {
-            background-color: #c7c7c7;
+            background-color: rgb(253, 253, 253);
+            vertical-align: middle;
+            text-align: center;
+
+            justify-content: center;
+            align-items: center;
         }
+
         .imageneo {
-            background-color: #c7c7c7;
-          
+            background-color: rgb(253, 253, 253);
+            text-align: center;
+            vertical-align: middle;
         }
 
         .table-message {
             background-color: black;
+        }
+
+        .red-cell {
+            font-size: 150%;
+            font-weight: bold;
+            border-left: 1px solid yellow;
+        }
+
+        .nula {
+            height: 10px;
+            background-color: white;
         }
 
         @media (max-width: 767px) {
@@ -239,21 +308,30 @@
             }
         }
     </style>
-    
+
 </head>
 
 <body>
 
     <table>
         <tr>
-            <td class="clean"><img src="./gamatech.jpeg" alt="Gamatech"></td>
-            <td class="clean"></td>
+            <td class="nula"></td>
+            <td class="nula"></td>
+            <td class="nula"></td>
+            <td class="nula"></td>
+        </tr>
+        <tr style="margin-top: 3px;">
+            <td style="text-align: center;" ; colspan="2" ; class="clean"><img src="./gamatech.jpeg" width="250px"
+                    height="62px" alt="Gamatech"></td>
+
             <td style="background-color: {{elementos.[38]}}" colspan="10" class="top-table">
                 <span style="background-color: {{elementos.[38]}}" id="systemMessage"
                     class="message">{{elementos.[1]}}</span>
             </td>
-            <td class="clean"></td>
-            <td class="imageneo"><img src="./neo.png" alt="Neo Powertech" width="95%"></td>
+
+            <td style="text-align: center;" colspan="2" class="clean"><img src="./neo.png" width="200px" height="80px"
+                    alt="Neo PWT"></td>
+
         </tr>
     </table>
     </div>
@@ -267,7 +345,7 @@
 
                     <th colspan="2" class="destaque-cell">PERIODO: <span id="periodoSpan"
                             class="content-white">{{elementos.[2]}}</span></th>
-                    <td colspan="2" class="destaquea-cell">PRODUTO: <span id="produtoSpan"
+                    <td colspan="4" class="destaquea-cell">PRODUTO: <span id="produtoSpan"
                             class="content-white">{{elementos.[4]}}</span></td>
                     <td colspan="2" class="destaqueb-cell">HORA X HORA</td>
                 </tr>
@@ -275,78 +353,88 @@
 
                     <th colspan="2" class="destaquea-cell">OPERADORES: <span id="operadores"
                             class="content-white">{{elementos.[35]}}</span></th>
-                    <th colspan="2" class="destaquea-cell">LINHA: <span id="linhaSpan"
+                    <th colspan="4" class="destaquea-cell">LINHA: <span id="linhaSpan"
                             class="content-white">{{elementos.[3]}}</span></th>
                     <td class="destaqueb-cell">HORA</td>
                     <td class="destaqueb-cell">PRODUÇÃO</td>
                 </tr>
                 <tr>
 
-                    <td colspan="2"> </td>
-                    <td class="yellow-bg" style="width: 33.33%;">HORA </td>
-                    <td class="yellow-bg" style="width: 33.33%;">TURNO </td>
+                    <td style="border-bottom: 1px solid yellow;border-left: 1px solid yellow;" colspan="2"> </td>
+                    <td colspan="2" class="yellowb-bg" style="width: 33.33%; border-left: 1px solid yellow; border-bottom: 1px solid yellow;">HORA </td>
+                    <td colspan="2" class="yellowb-bg" style="width: 33.33%; border-left: 1px solid yellow; border-bottom: 1px solid yellow;">TURNO </td>
                     <td id="valor55" class="parhora-cell">{{elementos.[15]}}</td>
-                    <td id="valor24" class="parhora-cell">{{elementos.[25]}}</td>
+                    <td id="valor24" class="parhorab-cell">{{elementos.[25]}}</td>
                 </tr>
                 <tr>
 
-                    <td colspan="2" rowspan="2" class="yellow-bg" style="width: 33.33%;">PLANEJADO</td>
-                    <td rowspan="2" style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span
+                    <td colspan="2" rowspan="2" class="yellow-bg" style="border-left: 1px solid yellow; width: 33.33%;">PLANEJADO</td>
+                    <td colspan="2" rowspan="2" class="red-cell"
+                        style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span
                             id="valor16">{{elementos.[5]}}</span></td>
-                    <td rowspan="2" class="gray-bg" style="width: 33.33%;"><span id="valor17">{{elementos.[10]}}</span>
+                    <td colspan="2" rowspan="2" class="gray-bg" style="width: 33.33%;"><span
+                            id="valor17">{{elementos.[10]}}</span>
                     </td>
                     <td id="valor56" class="imparhora-cell">{{elementos.[16]}}</td>
-                    <td id="valor25" class="imparhora-cell">{{elementos.[26]}}</td>
+                    <td id="valor25" class="imparhorab-cell">{{elementos.[26]}}</td>
 
                 </tr>
                 <tr>
 
                     <td id="valor57" class="parhora-cell">{{elementos.[17]}}</td>
-                    <td id="valor26" class="parhora-cell">{{elementos.[27]}}</td>
+                    <td id="valor26" class="parhorab-cell">{{elementos.[27]}}</td>
                 </tr>
 
                 </tr>
                 <tr>
 
-                    <td colspan="2" rowspan="2" class="yellow-bg" style="width: 33.33%;">EXPECTATIVA</td>
-                    <td rowspan="2" style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span
+                    <td colspan="2" rowspan="2" class="yellow-bg" style="width: 33.33%; border-left: 1px solid yellow;">EXPECTATIVA</td>
+                    <td colspan="2" rowspan="2" class="red-cell"
+                        style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span
                             id="valor18">{{elementos.[6]}}</span></td>
-                    <td rowspan="2" class="gray-bg" style="width: 33.33%;"><span id="valor19">{{elementos.[11]}}</span>
+                    <td colspan="2" rowspan="2" class="gray-bg" style="width: 33.33%;"><span
+                            id="valor19">{{elementos.[11]}}</span>
                     </td>
                     <td id="valor58" class="imparhora-cell">{{elementos.[18]}}</td>
-                    <td id="valor27" class="imparhora-cell">{{elementos.[28]}}</td>
+                    <td id="valor27" class="imparhorab-cell">{{elementos.[28]}}</td>
 
                 </tr>
                 <tr>
 
                     <td id="valor59" class="parhora-cell">{{elementos.[19]}}</td>
-                    <td id="valor28" class="parhora-cell">{{elementos.[29]}}</td>
+                    <td id="valor28" class="parhorab-cell">{{elementos.[29]}}</td>
                 </tr>
                 <tr>
 
-                    <td colspan="2" rowspan="2" class="yellow-bg" style="width: 33.33%;">PRODUZIDO</td>
-                    <td rowspan="2" style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span
+                    <td colspan="2" rowspan="2" class="yellow-bg" style="width: 33.33%; border-left: 1px solid yellow;">PRODUZIDO</td>
+                    <td colspan="2" rowspan="2" class="red-cell"
+                        style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span
                             id="valor20">{{elementos.[7]}}</span></td>
-                    <td rowspan="2" class="gray-bg" style="width: 33.33%;"><span id="valor21">{{elementos.[12]}}</span>
+                    <td colspan="2" rowspan="2" class="gray-bg" style="width: 33.33%; "><span
+                            id="valor21">{{elementos.[12]}}</span>
                     </td>
 
                     <td id="valor60" class="imparhora-cell">{{elementos.[20]}}</td>
-                    <td id="valor29" class="imparhora-cell">{{elementos.[30]}}</td>
+                    <td id="valor29" class="imparhorab-cell">{{elementos.[30]}}</td>
 
                 </tr>
                 <tr>
 
                     <td id="valor61" class="parhora-cell">{{elementos.[21]}}</td>
-                    <td id="valor30" class="parhora-cell">{{elementos.[31]}}</td>
+                    <td id="valor30" class="parhorab-cell">{{elementos.[31]}}</td>
                 </tr>
                 <tr>
 
-                    <td colspan="2" rowspan="2" class="yellow-bg" style="width: 33.33%;">REPROVADO</td>
-                    <td rowspan="2" style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span
-                            id="valor22">{{elementos.[8]}}</span></td>
-                    <td rowspan="2" class="gray-bg" style="width: 33.33%;"><span id="valor23">{{elementos.[13]}}</span>
+                    <td colspan="2" rowspan="2" class="yellow-bg"
+                        style="width: 33.33%; border-bottom: 1px solid yellow; border-left: 1px solid yellow; ">REPROVADO</td>
+                    <td colspan=" 2" rowspan="2" class="red-cell"
+                        style="background-color: {{elementos.[40]}}; color: black; width: 33.33%; border-bottom: 1px solid yellow; ""><span
+                            id=" valor22">{{elementos.[8]}}</span></td>
+                    <td colspan="2" rowspan="2" class="gray-bg"
+                        style="width: 33.33%; border-bottom: 1px solid yellow; "><span
+                            id="valor23">{{elementos.[13]}}</span>
                     <td id="valor62" class="imparhora-cell">{{elementos.[22]}}</td>
-                    <td id="valor31" class="imparhora-cell"><span id="valor31">{{elementos.[32]}}</span></td>
+                    <td id="valor31" class="imparhorab-cell"><span id="valor31">{{elementos.[32]}}</span></td>
                     </td>
 
                 </tr>
@@ -354,27 +442,56 @@
 
 
                     <td id="valor63" class="parhora-cell">{{elementos.[23]}}</td>
-                    <td id="valor32" class="parhora-cell">{{elementos.[33]}}</td>
+                    <td id="valor32" class="parhorab-cell">{{elementos.[33]}}</td>
 
                 </tr>
 
                 <tr>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
+                    <td colspan="2"></td>
+                    <td colspan="2"></td>
                     <td id="valor64" class="imparhora-cell">{{elementos.[24]}}</td>
-                    <td id="valor33" class="imparhora-cell"><span id="valor33">{{elementos.[34]}}</span></td>
+                    <td id="valor33" class="imparhorab-cell"><span id="valor33">{{elementos.[34]}}</span></td>
                 </tr>
+                <p><span id="ano">{{currentYear}}</span></p>
 
         </div>
-
-
         </table>
-    </div>
-    </div>
 
-   
+    </div>
+    </div>
+    <div class="datetime-display">
+        <span id="datetime"></span>
+
+    </div>
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const days = ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'];
+            const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+            const dayName = days[now.getDay()];
+            const day = now.getDate();
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+
+            const dateTimeString = `${dayName}, ${day} de ${month} de ${year}     ${hours}:${minutes}:${seconds}`;
+
+            document.getElementById('datetime').textContent = dateTimeString;
+        }
+
+
+        // Update every 500 milliseconds (half second)
+        updateDateTime();
+        setInterval(updateDateTime, 500);
+
+    </script>
+
 </body>
 
 </html>
