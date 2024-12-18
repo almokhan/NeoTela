@@ -122,6 +122,13 @@
             font-size: 150%;
             border-left: 1px solid yellow;
         }
+         .gray-bg-b {
+            background-color: #504f4f;
+            color: white;
+            font-weight: bold;
+            font-size: 150%;
+           
+        }
 
         .gray-apr {
             background-color: #504f4f;
@@ -204,7 +211,7 @@
             color: white;
             font-weight: bold;
             text-align: center;
-            font-size: 130%;
+            font-size: 130%;  
 
         }
 
@@ -223,11 +230,9 @@
         }
 
         .big-number {
-            position: absolute;
-            top: 40%;
-            left: 40%;
+           
             transform: translate(-50%, -50%);
-            font-size: 110px;
+            font-size: 100px;
             color: rgb(0, 0, 0);
             font-weight: bold;
             z-index: 1;
@@ -338,8 +343,8 @@
     <div class="dashboard">
 
         <div class="table-container">
-            <div class="big-number">{{elementos.[9]}}</div>
-            <div style="color: {{elementos.[41]}};" class="big-number-b">{{elementos.[14]}}</div>
+       
+        
             <table>
                 <tr>
 
@@ -369,12 +374,17 @@
                 <tr>
 
                     <td colspan="2" rowspan="2" class="yellow-bg" style="border-left: 1px solid yellow; width: 33.33%;">PLANEJADO</td>
-                    <td colspan="2" rowspan="2" class="red-cell"
+                    <td colspan="1" rowspan="2" class="red-cell"
                         style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span
                             id="valor16">{{elementos.[5]}}</span></td>
-                    <td colspan="2" rowspan="2" class="gray-bg" style="width: 33.33%;"><span
+                        <td rowspan="8" style="background-color: {{elementos.[40]}};"><span class="big-number">{{elementos.[9]}}</span></td>
+                          
+                    <td colspan="1" rowspan="2" class="gray-bg-b" style="width: 33.33%;  border-left: 1px solid yellow;
+        }"><span
                             id="valor17">{{elementos.[10]}}</span>
                     </td>
+                    <td rowspan="8" class="gray-bg-b"><span class="big-number">{{elementos.[14]}}</span></td>
+
                     <td id="valor56" class="imparhora-cell">{{elementos.[16]}}</td>
                     <td id="valor25" class="imparhorab-cell" style="border-right: solid yellow 1px;">{{elementos.[26]}}</td>
 
@@ -392,6 +402,7 @@
                     <td colspan="2" rowspan="2" class="red-cell"
                         style="background-color: {{elementos.[40]}}; color: black; width: 33.33%;"><span
                             id="valor18">{{elementos.[6]}}</span></td>
+                            
                     <td colspan="2" rowspan="2" class="gray-bg" style="width: 33.33%;"><span
                             id="valor19">{{elementos.[11]}}</span>
                     </td>
